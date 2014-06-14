@@ -1,6 +1,6 @@
 # Atabodi
 
-TODO: Write a gem description
+Unofficial idobata.io api client
 
 ## Installation
 
