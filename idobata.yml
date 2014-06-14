@@ -1,0 +1,113 @@
+---
+"$schema": http://json-schema.org/draft-04/hyper-schema
+properties:
+  bot:
+    "$ref": "#/definitions/bot"
+  bots:
+    "$ref": "#/definitions/bots"
+type:
+- object
+description: A schema for a unofficial idobata API.
+links:
+- href: https://idobata.io
+  rel: self
+title: Idobata API
+definitions:
+  bots:
+    "$schema": http://json-schema.org/draft-04/hyper-schema
+    description: idobata robot guys.
+    title: Bots
+    type:
+    - object
+    properties:
+      bots:
+        type:
+        - array
+        items:
+          "$ref": "#/definitions/bot"
+    links:
+      - description: List existing bots.
+        href: "/api/bots/"
+        method: GET
+        rel: self
+        title: list
+  bot:
+    "$schema": http://json-schema.org/draft-04/hyper-schema
+    description: A idobata robot guy.
+    title: Bot
+    type:
+    - object
+    properties:
+      id:
+        "$ref": "#/definitions/bot/definitions/id"
+      name:
+        "$ref": "#/definitions/bot/definitions/name"
+      icon_url:
+        "$ref": "#/definitions/bot/definitions/icon_url"
+      api_token:
+        "$ref": "#/definitions/bot/definitions/api_token"
+      status:
+        "$ref": "#/definitions/bot/definitions/status"
+      channel_name:
+        "$ref": "#/definitions/bot/definitions/channel_name"
+    links:
+      # update icon is multipart request...
+      # - title: update_icon
+      #   description: Update a icon of bot.
+      #   href: "/api/bots/{(%23%2Fdefinitions%2Fbot%2Fdefinitions%2Fid)}"
+      #   method: PUT
+      #   rel: update
+      #   schema:
+      #     properties:
+      #       icon:
+      #         "$ref": "#/definitions/bot/definitions/icon"
+      #     type:
+      #     - object
+    definitions:
+      id:
+        description: unique identifier of bot
+        example: 3543
+        readOnly: true
+        type:
+        - integer
+      name:
+        description: unique name of bot
+        example: hi
+        pattern: "^[a-zA-Z0-9_-]{1,15}$"
+        readOnly: false
+        type:
+        - string
+      icon_url:
+        description: a icon of bot
+        example: https://idobata.s3.amazonaws.com/uploads/bot/icon/3543/mihashi.jpg
+        format: uri
+        readOnly: true
+        type:
+          - string
+      api_token:
+        description: "unique api token of bot, uuid.gsub('-', '')"
+        example: 0123456789abcdef0123456789abcdef
+        pattern: "^[0-9a-f]{32}"
+        readOnly: true
+        type:
+          - string
+      status:
+        description: status of bot
+        example: offline
+        pattern: "(offline|online)"
+        readOnly: true
+        type:
+          - string
+      channel_name:
+        description: a protected channel name of pusher
+        example: presence-guy_3543
+        readOnly: true
+        type:
+          - string
+      # icon:
+      #   description: an icon data of bot
+      #   type:
+      #     - string
+      #   media:
+      #     binaryEncoding: base64
+      #     type: image/jpeg
