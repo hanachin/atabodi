@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = Atabodi::VERSION
   spec.authors       = ["Seiei Higa"]
   spec.email         = ["hanachin@gmail.com"]
-  spec.summary       = %q{idobata.io bot api client}
+  spec.summary       = %q{idobata.io api client}
   spec.homepage      = ""
   spec.license       = "MIT"
 
