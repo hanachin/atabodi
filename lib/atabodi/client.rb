@@ -56,6 +56,13 @@ module Atabodi
     end
   end
 
+  class User < Client
+    def initialize(user:, password:)
+      super()
+      client.connection.basic_auth(user, password)
+    end
+  end
+
   class Bot < Client
     def initialize(api_token:)
       @api_token = api_token
