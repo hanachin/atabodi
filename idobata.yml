@@ -13,6 +13,56 @@ links:
   rel: self
 title: Idobata API
 definitions:
+  messages:
+    "$schema": http://json-schema.org/draft-04/hyper-schema
+    description: idobata messages
+    title: Messages
+    type:
+    - array
+    items:
+      "$ref": "#/definitions/message"
+  message:
+    "$schema": http://json-schema.org/draft-04/hyper-schema
+    description: an idobata message
+    title: Message
+    definitions:
+      id:
+        description: unique identifier of message
+        example: 1
+        type:
+        - integer
+      body:
+        description: the text of message
+        type:
+        - string
+      image_urls:
+        type:
+        - array
+        items:
+          type: string
+          format: url
+      mentions:
+        type:
+        - array
+      created_at:
+        type:
+        - string
+      room_id:
+        type:
+        - integer
+      sender_type:
+        type:
+        - string
+      sender_name:
+        type:
+        - string
+      sender_id:
+        type:
+        - integer
+      sender_icon_url:
+        type:
+        - string
+
   bots:
     "$schema": http://json-schema.org/draft-04/hyper-schema
     description: idobata robot guys.
