@@ -11,7 +11,7 @@ module Atabodi
 
     def_delegator :client, :respond_to?, :respond_to_missing?
 
-    def initialize(schema: DEFAULT_SCHEMA
+    def initialize(schema: DEFAULT_SCHEMA)
       @schema = schema
       client.connection.headers = client.connection.headers.merge(headers)
     end
