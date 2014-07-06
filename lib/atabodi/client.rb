@@ -11,9 +11,8 @@ module Atabodi
 
     def_delegator :client, :respond_to?, :respond_to_missing?
 
-    def initialize(schema: DEFAULT_SCHEMA, api_token:)
+    def initialize(schema: DEFAULT_SCHEMA)
       @schema = schema
-      @api_token = api_token
       client.connection.headers = client.connection.headers.merge(headers)
     end
 
@@ -53,8 +52,26 @@ module Atabodi
     def headers
       {
         'User-Agent'  => "Atabodi v#{Atabodi::VERSION}",
-        'X-API-Token' => @api_token
       }
+    end
+  end
+
+  class User < Client
+    def initialize(user:, password:)
+      super()
+      client.connection.basic_auth(user, password)
+    end
+  end
+
+  class Bot < Client
+    def initialize(api_token:)
+      @api_token = api_token
+      super()
+    end
+
+    private
+    def headers
+      super.merge('X-API-Token' => @api_token)
     end
   end
 end
